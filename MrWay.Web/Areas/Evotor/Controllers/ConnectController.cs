@@ -15,11 +15,13 @@ namespace MrWay.Web.Areas.Evotor.Controllers
     [Route("api/[area]/[controller]")]
     public class ConnectController : Controller
     {
+        private readonly AppDbContext context;
         private readonly IStoreRepository storeRepository;
         private readonly IEvotorApi evotorApi;
 
-        public ConnectController(IStoreRepository storeRepository, IEvotorApi evotorApi)
+        public ConnectController(AppDbContext context,IStoreRepository storeRepository, IEvotorApi evotorApi)
         {
+            this.context = context;
             this.storeRepository = storeRepository;
             this.evotorApi = evotorApi;
         }
@@ -47,6 +49,8 @@ namespace MrWay.Web.Areas.Evotor.Controllers
             var products = await evotorApi.GetProducts(store.Token, "20171202-261B-402F-8072-72FF7FEE1CB3");
 
             products.ForEach(x => x.Store = store);
+
+            context.Products.AddRange(products);
 
             return products;
         }
