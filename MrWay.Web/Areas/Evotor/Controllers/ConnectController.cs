@@ -21,8 +21,8 @@ namespace MrWay.Web.Areas.Evotor.Controllers
             this.storeRepostory = storeRepostory;
         }
 
-        [HttpGet]
-        public ConnectedDto Connect(ConnectDto dto)
+        [HttpPost]
+        public ConnectedDto Connect([FromBody] ConnectDto dto)
         {
             var store = new Store
             {
