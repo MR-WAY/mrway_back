@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNet.Security.OAuth.Validation;
-using AspNet.Security.OpenIdConnect.Primitives;
+//using AspNet.Security.OAuth.Validation;
+//using AspNet.Security.OpenIdConnect.Primitives;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -57,12 +57,13 @@ namespace MrWay.Web
             //    options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
             //});
 
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = OAuthValidationDefaults.AuthenticationScheme;
-                    options.DefaultAuthenticateScheme = OAuthValidationDefaults.AuthenticationScheme;
-                })
-                .AddOAuthValidation();
+            services.AddAuthentication();
+            //services.AddAuthentication(options =>
+            //    {
+            //        options.DefaultScheme = OAuthValidationDefaults.AuthenticationScheme;
+            //        options.DefaultAuthenticateScheme = OAuthValidationDefaults.AuthenticationScheme;
+            //    })
+            //    .AddOAuthValidation();
 
             //services.AddOpenIddict()
             //    .AddEntityFrameworkCoreStores<AppDbContext>()
