@@ -27,6 +27,7 @@ namespace MrWay.Data.Infrastructure.Context
 
             builder.ApplyConfiguration(new StoreConfiguration());
             builder.ApplyConfiguration(new ProductConfiguraion());
+            builder.ApplyConfiguration(new ProductConfiguraion());
         }
     }
 }

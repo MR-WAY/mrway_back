@@ -11,5 +11,8 @@ namespace MrWay.Domain.DomainModels.Order
 
         public Guid ProductId { get; set; }
         public Product Product { get; set; }
+
+        public Guid OrderId { get; set; }
+        public virtual Order Order { get; set; }
     }
 }
