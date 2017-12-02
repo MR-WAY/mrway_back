@@ -10,6 +10,12 @@ namespace MrWay.Domain.DataTransferObjects.Order
         public Guid Id { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public DeliveryStatus DeliveryStatus { get; set; }
+
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
+        public CoordinatesDto Store { get; set; }
+
         public List<OrderLineDto> Lines { get; set; }
     }
 }

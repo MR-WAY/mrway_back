@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MrWay.Data.Infrastructure.Context;
+using MrWay.Domain.DataTransferObjects;
 using MrWay.Domain.DataTransferObjects.Order;
 using MrWay.Domain.DomainModels.Order;
 using System;
@@ -27,11 +28,22 @@ namespace MrWay.Web.Areas.Сourier.Controllers
         [HttpGet]
         public List<OrderDto> Orders()
         {
+            var store = context.Stores.First();
             var orders = context.Orders
-                .Include(x=>x.Lines)
+                .Include(x => x.Lines)
                 .ToList();
 
-            return mapper.Map<List<OrderDto>>(orders);
+            var dto = mapper.Map<List<OrderDto>>(orders);
+            dto.ForEach(x =>
+            {
+                x.Store = new CoordinatesDto
+                {
+                    Latitude = store.Latitude,
+                    Longitude = store.Longitude
+                };
+            });
+
+            return dto;
         }
 
         [HttpPost("Accept/{orderId:guid}")]
