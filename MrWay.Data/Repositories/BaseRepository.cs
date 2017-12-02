@@ -13,7 +13,7 @@ namespace MrWay.Data.Repositories
     {
         private readonly DbSet<TEntity> dbSet;
 
-        protected BaseRepository(AppDbContext context)
+        public BaseRepository(AppDbContext context)
         {
             dbSet = context.Set<TEntity>();
         }

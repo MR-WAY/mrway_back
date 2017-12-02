@@ -9,7 +9,7 @@ namespace MrWay.Data.Repositories
 {
     public class StoreRepository : BaseRepository<Store>, IStoreRepository
     {
-        protected StoreRepository(AppDbContext context) : base(context)
+        public StoreRepository(AppDbContext context) : base(context)
         {
         }
     }
