@@ -52,6 +52,8 @@ namespace MrWay.Web.Areas.Evotor.Controllers
                         Quantity = line.Quantity
                     });
                 }
+
+                dto.Add(orderDto);
             }
 
             return dto;
