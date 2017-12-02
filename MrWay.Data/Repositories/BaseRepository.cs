@@ -43,5 +43,10 @@ namespace MrWay.Data.Repositories
         {
             return dbSet.ToList();
         }
+
+        public void Add(List<TEntity> entities)
+        {
+            entities.ForEach(x => Add(x));
+        }
     }
 }

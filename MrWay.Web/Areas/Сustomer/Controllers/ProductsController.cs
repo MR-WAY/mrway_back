@@ -25,14 +25,6 @@ namespace MrWay.Web.Areas.Сustomer.Controllers
             this.evotorApi = evotorApi;
         }
 
-        [HttpGet("")]
-        public async Task<List<Product>> GetAll(
-            [FromHeader(Name = "Authorization")] string authorization
-        )
-        {
-            var store = storeRepository.Get(Guid.Parse(authorization));
-
-            return await evotorApi.GetProducts(store.Token, "20171202-261B-402F-8072-72FF7FEE1CB3");
-        }
+        
     }
 }

@@ -3,6 +3,7 @@ using MrWay.Data.Infrastructure.Context;
 using MrWay.Domain.DataTransferObjects.Evotor;
 using MrWay.Domain.DomainModels.Retail;
 using MrWay.Domain.Interfaces.Repositories;
+using MrWay.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace MrWay.Web.Areas.Evotor.Controllers
     [Route("api/[area]/[controller]")]
     public class ConnectController : Controller
     {
-        private readonly IStoreRepository storeRepostory;
+        private readonly IStoreRepository storeRepository;
+        private readonly IEvotorApi evotorApi;
 
-        public ConnectController(IStoreRepository storeRepostory)
+        public ConnectController(IStoreRepository storeRepository, IEvotorApi evotorApi)
         {
-            this.storeRepostory = storeRepostory;
+            this.storeRepository = storeRepository;
+            this.evotorApi = evotorApi;
         }
 
         [HttpPost]
@@ -28,7 +31,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
             {
                 UserId = dto.UserId
             };
-            storeRepostory.Add(store);
+            storeRepository.Add(store);
 
             return new ConnectedDto
             {
@@ -37,10 +40,21 @@ namespace MrWay.Web.Areas.Evotor.Controllers
             };
         }
 
+        [HttpGet("Products")]
+        public async Task<List<Product>> GetAll([FromHeader(Name = "Authorization")] string authorization)
+        {
+            var store = storeRepository.Get(Guid.Parse(authorization));
+            var products = await evotorApi.GetProducts(store.Token, "20171202-261B-402F-8072-72FF7FEE1CB3");
+
+            products.ForEach(x => x.Store = store);
+
+            return products;
+        }
+
         [HttpGet("Stores")]
         public List<Store> GetStores()
         {
-            return storeRepostory.GetAll();
+            return storeRepository.GetAll();
         }
     }
 }
