@@ -24,6 +24,7 @@ namespace MrWay.Web.Areas.Сourier.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet]
         public List<OrderDto> Orders()
         {
             var orders = context.Orders
