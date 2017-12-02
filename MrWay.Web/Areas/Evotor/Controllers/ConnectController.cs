@@ -22,15 +22,20 @@ namespace MrWay.Web.Areas.Evotor.Controllers
         }
 
         [HttpGet]
-        public IActionResult Connect(ConnectDto dto)
+        public ConnectedDto Connect(ConnectDto dto)
         {
-            storeRepostory.Add(new Store
+            var store = new Store
             {
                 UserId = dto.UserId,
                 Token = Guid.NewGuid()
-            });
+            };
+            storeRepostory.Add(store);
 
-            return Ok();
+            return new ConnectedDto
+            {
+                UserId = store.UserId,
+                Token = store.Token
+            };
         }
 
         [HttpGet("Stores")]
