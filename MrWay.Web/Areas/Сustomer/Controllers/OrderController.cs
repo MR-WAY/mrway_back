@@ -32,6 +32,8 @@ namespace MrWay.Web.Areas.Сustomer.Controllers
                 Id = SeqGuid.New(),
                 OrderStatus = OrderStatus.Untreated,
                 DeliveryStatus = DeliveryStatus.Untreated,
+                Latitude = 55.6762,
+                Longitude = 37.6317,
                 Lines = mapper.Map<List<OrderLine>>(dto)
             };
 

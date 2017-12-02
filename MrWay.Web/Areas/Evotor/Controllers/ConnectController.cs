@@ -31,7 +31,9 @@ namespace MrWay.Web.Areas.Evotor.Controllers
         {
             var store = new Store
             {
-                UserId = dto.UserId
+                UserId = dto.UserId,
+                Latitude = 55.6722,
+                Longitude = 37.6317
             };
             storeRepository.Add(store);
 

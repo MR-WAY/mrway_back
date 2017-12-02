@@ -9,6 +9,9 @@ namespace MrWay.Domain.DomainModels.Order
         public OrderStatus OrderStatus { get; set; }
         public DeliveryStatus DeliveryStatus { get; set; }
 
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
         public virtual List<OrderLine> Lines { get; set; }
     }
 }
