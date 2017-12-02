@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MrWay.Web.Areas.Evotor.Controllers
 {
+    [Area("Evotor")]
     [Route("api/[area]/[controller]")]
     public class ConnectController
     {
