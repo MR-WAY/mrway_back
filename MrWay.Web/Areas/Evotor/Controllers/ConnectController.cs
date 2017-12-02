@@ -34,7 +34,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
             return new ConnectedDto
             {
                 UserId = store.UserId,
-                Token = store.Token
+                Token = store.Token.ToString()
             };
         }
 
