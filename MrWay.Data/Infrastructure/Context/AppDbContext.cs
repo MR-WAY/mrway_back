@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using MrWay.Data.Configurations;
 
 namespace MrWay.Data.Infrastructure.Context
 {
@@ -11,6 +12,13 @@ namespace MrWay.Data.Infrastructure.Context
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new StoreConfiguration());
         }
     }
 }

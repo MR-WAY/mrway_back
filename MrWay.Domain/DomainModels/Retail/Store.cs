@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MrWay.Domain.DataTransferObjects.Evotor
+namespace MrWay.Domain.DomainModels.Retail
 {
-    public class ConnectDto
+    public class Store : Entity
     {
         public string UserId { get; set; }
+        public Guid Token { get; set; }
     }
 }

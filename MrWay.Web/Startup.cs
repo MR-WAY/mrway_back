@@ -23,6 +23,8 @@ using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.Swagger;
 using MrWay.Domain.Interfaces.UnitOfWork;
 using MrWay.Data.Infrastructure.UnitOfWork;
+using MrWay.Domain.Interfaces.Repositories;
+using MrWay.Data.Repositories;
 
 namespace MrWay.Web
 {
@@ -98,6 +100,7 @@ namespace MrWay.Web
             });
 
             services.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
+            services.AddScoped<IStoreRepository, StoreRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

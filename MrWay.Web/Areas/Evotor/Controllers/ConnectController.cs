@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MrWay.Data.Infrastructure.Context;
 using MrWay.Domain.DataTransferObjects.Evotor;
+using MrWay.Domain.DomainModels.Retail;
+using MrWay.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +12,31 @@ namespace MrWay.Web.Areas.Evotor.Controllers
 {
     [Area("Evotor")]
     [Route("api/[area]/[controller]")]
-    public class ConnectController
+    public class ConnectController : Controller
     {
-        [HttpGet]
-        public ConnectDto Connect(
-            [FromHeader(Name = "X-Evotor-Store-Uuid")] string storeId,
-            [FromHeader(Name = "X-Evotor-Device-UUID")] string deviceId,
-            [FromHeader(Name = "X-Evotor-User-Id")] string userId,
-            [FromHeader(Name = "Authorization")] string token
-        )
+        private readonly IStoreRepository storeRepostory;
+
+        public ConnectController(IStoreRepository storeRepostory)
         {
-            return new ConnectDto
+            this.storeRepostory = storeRepostory;
+        }
+
+        [HttpGet]
+        public IActionResult Connect(ConnectDto dto)
+        {
+            storeRepostory.Add(new Store
             {
-                StoreId = storeId,
-                DeviceId = deviceId,
-                UserId = userId,
-                Token = token
-            };
+                UserId = dto.UserId,
+                Token = Guid.NewGuid()
+            });
+
+            return Ok();
+        }
+
+        [HttpGet("Stores")]
+        public List<Store> GetStores()
+        {
+            return storeRepostory.GetAll();
         }
     }
 }

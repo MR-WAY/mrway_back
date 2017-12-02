@@ -10,5 +10,6 @@ namespace MrWay.Domain.Interfaces.Repositories
         void Remove(TEntity entity);
         TEntity Get(Guid id);
         TEntity Find(Guid id);
+        List<TEntity> GetAll();
     }
 }

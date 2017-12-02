@@ -38,5 +38,10 @@ namespace MrWay.Data.Repositories
         {
             return dbSet.Find(id);
         }
+
+        public List<TEntity> GetAll()
+        {
+            return dbSet.ToList();
+        }
     }
 }
