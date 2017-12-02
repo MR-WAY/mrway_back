@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MrWay.Domain.DomainModels.Retail
 {
-    public class Store : Entity
+    public class Product : Entity
     {
-        public string UserId { get; set; }
-        public string Token { get; set; }
+        public string Name { get; set; }
+        public double Cost { get; set; }
     }
 }

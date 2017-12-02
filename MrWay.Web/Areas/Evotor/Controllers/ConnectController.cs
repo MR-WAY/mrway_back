@@ -26,15 +26,14 @@ namespace MrWay.Web.Areas.Evotor.Controllers
         {
             var store = new Store
             {
-                UserId = dto.UserId,
-                Token = Guid.NewGuid()
+                UserId = dto.UserId
             };
             storeRepostory.Add(store);
 
             return new ConnectedDto
             {
                 UserId = store.UserId,
-                Token = store.Token.ToString()
+                Token = store.Id.ToString()
             };
         }
 

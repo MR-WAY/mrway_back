@@ -25,6 +25,7 @@ using MrWay.Domain.Interfaces.UnitOfWork;
 using MrWay.Data.Infrastructure.UnitOfWork;
 using MrWay.Domain.Interfaces.Repositories;
 using MrWay.Data.Repositories;
+using Refit;
 
 namespace MrWay.Web
 {
@@ -101,6 +102,7 @@ namespace MrWay.Web
 
             services.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
             services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped(x => RestService.For<IEvotorApi>("https://api.evotor.ru/api"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
