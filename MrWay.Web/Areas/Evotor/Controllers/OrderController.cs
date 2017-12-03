@@ -46,10 +46,13 @@ namespace MrWay.Web.Areas.Evotor.Controllers
 
                 foreach (var line in order.Lines)
                 {
+                    orderDto.Cost += line.Product.Cost;
                     orderDto.Lines.Add(new EvotorOrderLineDto
                     {
                         ProductUuid = line.Product.uuid,
-                        Quantity = line.Quantity
+                        Quantity = line.Quantity,
+                        Name = line.Product.Name,
+                        Cost = line.Product.Cost
                     });
                 }
 

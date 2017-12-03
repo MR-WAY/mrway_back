@@ -8,5 +8,7 @@ namespace MrWay.Domain.DomainModels.Order
     {
         public int Quantity { get; set; }
         public string ProductUuid { get; set; }
+        public string Name { get; set; }
+        public double Cost { get; set; }
     }
 }

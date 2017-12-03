@@ -9,6 +9,7 @@ namespace MrWay.Domain.DomainModels.Order
         public Guid Id { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public DeliveryStatus DeliveryStatus { get; set; }
+        public double Cost { get; set; }
         public List<EvotorOrderLineDto> Lines { get; set; }
     }
 }
