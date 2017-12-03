@@ -6,6 +6,7 @@ namespace MrWay.Domain.DomainModels.Order
 {
     public class Order : Entity
     {
+        public int Code { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public DeliveryStatus DeliveryStatus { get; set; }
 

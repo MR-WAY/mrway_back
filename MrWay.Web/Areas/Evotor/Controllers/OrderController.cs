@@ -28,7 +28,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
         public List<EvotorOrderDto> Orders()
         {
             var orders = context.Orders
-                .Where(x => x.OrderStatus == OrderStatus.Untreated)
+                .Where(x => x.OrderStatus == OrderStatus.Untreated || x.DeliveryStatus == DeliveryStatus.Accepted)
                 .Include(x => x.Lines)
                 .ThenInclude(y => y.Product)
                 .ToList();
@@ -68,6 +68,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
         {
             var order = context.Orders.Single(x => x.Id == dto.Id);
             order.OrderStatus = OrderStatus.Packed;
+            order.Code = dto.Code;
 
             return dto;
         }

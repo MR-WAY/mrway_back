@@ -56,9 +56,13 @@ namespace MrWay.Web.Areas.Сourier.Controllers
         }
 
         [HttpPost("TakeAway/{orderId:guid}")]
-        public IActionResult TakeAway(Guid orderId)
+        public IActionResult TakeAway(Guid orderId, int code)
         {
             var order = context.Orders.Single(x => x.Id == orderId);
+
+            if (order.Code != code)
+                return BadRequest();
+
             order.DeliveryStatus = DeliveryStatus.TakenAway;
 
             return NoContent();
