@@ -58,5 +58,12 @@ namespace MrWay.Web.Areas.Evotor.Controllers
 
             return dto;
         }
+
+        [HttpPost("Pack/{orderId:guid}")]
+        public void Accept(Guid orderId)
+        {
+            var order = context.Orders.Single(x => x.Id == orderId);
+            order.OrderStatus = OrderStatus.Packed;
+        }
     }
 }
