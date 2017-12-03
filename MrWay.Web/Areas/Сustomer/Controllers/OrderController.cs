@@ -38,13 +38,18 @@ namespace MrWay.Web.Areas.Сustomer.Controllers
                 {
                     new OrderLine
                     {
-                        ProductId = Guid.Parse("21042be4-cd11-4d04-b821-88ec2f5d4266"),
-                        Quantity = 10
+                        ProductId = Guid.Parse("73a150d7-d812-4022-829a-f7f3df91a555"),
+                        Quantity = 3
                     },
                     new OrderLine
                     {
                         ProductId = Guid.Parse("645a8b6e-d914-4fb2-9344-b0a0a459a274"),
-                        Quantity = 4   
+                        Quantity = 1
+                    },
+                    new OrderLine
+                    {
+                        ProductId = Guid.Parse("21042be4-cd11-4d04-b821-88ec2f5d4266"),
+                        Quantity = 1
                     }
                 }
             };
