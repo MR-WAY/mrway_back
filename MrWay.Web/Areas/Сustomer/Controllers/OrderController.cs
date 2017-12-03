@@ -24,8 +24,8 @@ namespace MrWay.Web.Areas.Сustomer.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost]
-        public void Create([FromBody] List<CreateOrderDto> dto)
+        [HttpGet]
+        public void Create()
         {
             var order = new Order
             {
@@ -34,7 +34,19 @@ namespace MrWay.Web.Areas.Сustomer.Controllers
                 DeliveryStatus = DeliveryStatus.Untreated,
                 Latitude = 55.6762,
                 Longitude = 37.6317,
-                Lines = mapper.Map<List<OrderLine>>(dto)
+                Lines = new List<OrderLine>()
+                {
+                    new OrderLine
+                    {
+                        ProductId = Guid.Parse("21042be4-cd11-4d04-b821-88ec2f5d4266"),
+                        Quantity = 10
+                    },
+                    new OrderLine
+                    {
+                        ProductId = Guid.Parse("645a8b6e-d914-4fb2-9344-b0a0a459a274"),
+                        Quantity = 4   
+                    }
+                }
             };
 
             order.Lines.ForEach(x => x.Id = SeqGuid.New());
