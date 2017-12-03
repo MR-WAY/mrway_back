@@ -14,7 +14,7 @@ namespace MrWay.Web.Areas.Сourier.Controllers
 {
     [Area("Courier")]
     [Route("api/[area]/[controller]")]
-    public class OrderController
+    public class OrderController : Controller
     {
         private readonly AppDbContext context;
         private readonly IMapper mapper;
@@ -47,24 +47,30 @@ namespace MrWay.Web.Areas.Сourier.Controllers
         }
 
         [HttpPost("Accept/{orderId:guid}")]
-        public void Accept(Guid orderId)
+        public IActionResult Accept(Guid orderId)
         {
             var order = context.Orders.Single(x => x.Id == orderId);
             order.DeliveryStatus = DeliveryStatus.Accepted;
+
+            return NoContent();
         }
 
         [HttpPost("TakeAway/{orderId:guid}")]
-        public void TakeAway(Guid orderId)
+        public IActionResult TakeAway(Guid orderId)
         {
             var order = context.Orders.Single(x => x.Id == orderId);
             order.DeliveryStatus = DeliveryStatus.TakenAway;
+
+            return NoContent();
         }
 
         [HttpPost("Delivery/{orderId:guid}")]
-        public void Delivery(Guid orderId)
+        public IActionResult Delivery(Guid orderId)
         {
             var order = context.Orders.Single(x => x.Id == orderId);
             order.DeliveryStatus = DeliveryStatus.Delivered;
+
+            return NoContent();
         }
     }
 }
