@@ -28,7 +28,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
         public List<EvotorOrderDto> Orders()
         {
             var orders = context.Orders
-                .Where(x => x.OrderStatus == OrderStatus.Untreated || x.DeliveryStatus == DeliveryStatus.Accepted)
+                .Where(x => x.OrderStatus == OrderStatus.Untreated || x.DeliveryStatus == DeliveryStatus.Accepted || x.IsCompleted == false)
                 .Include(x => x.Lines)
                 .ThenInclude(y => y.Product)
                 .ToList();
@@ -41,6 +41,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
                 {
                     Id = order.Id,
                     Code = order.Code,
+                    IsCompleted = order.IsCompleted,
                     DeliveryStatus = order.DeliveryStatus,
                     OrderStatus = order.OrderStatus,
                     Lines = new List<EvotorOrderLineDto>()

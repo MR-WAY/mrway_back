@@ -8,6 +8,7 @@ namespace MrWay.Domain.DomainModels.Order
     {
         public Guid Id { get; set; }
         public int Code { get; set; }
+        public bool IsCompleted { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public DeliveryStatus DeliveryStatus { get; set; }
         public double Cost { get; set; }
