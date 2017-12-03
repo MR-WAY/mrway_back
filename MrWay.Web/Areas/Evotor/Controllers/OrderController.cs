@@ -40,6 +40,7 @@ namespace MrWay.Web.Areas.Evotor.Controllers
                 var orderDto = new EvotorOrderDto()
                 {
                     Id = order.Id,
+                    Code = order.Code,
                     DeliveryStatus = order.DeliveryStatus,
                     OrderStatus = order.OrderStatus,
                     Lines = new List<EvotorOrderLineDto>()
