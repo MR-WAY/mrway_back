@@ -9,6 +9,7 @@ namespace MrWay.Domain.DomainModels.Order
         public int Code { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public DeliveryStatus DeliveryStatus { get; set; }
+        public bool IsCompleted { get; set; }
 
         public double Latitude { get; set; }
         public double Longitude { get; set; }

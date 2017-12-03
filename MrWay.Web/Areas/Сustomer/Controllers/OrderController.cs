@@ -58,5 +58,12 @@ namespace MrWay.Web.Areas.Сustomer.Controllers
 
             context.Orders.Add(order);
         }
+
+        [HttpGet("Complete")]
+        public void Complete()
+        {
+            var order = context.Orders.First(x => x.IsCompleted == false);
+            order.IsCompleted = true;
+        }
     }
 }
