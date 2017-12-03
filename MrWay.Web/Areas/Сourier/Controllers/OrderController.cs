@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MrWay.Web.Areas.Сourier.Controllers
 {
-    [Area("Сourier")]
+    [Area("Courier")]
     [Route("api/[area]/[controller]")]
     public class OrderController
     {
