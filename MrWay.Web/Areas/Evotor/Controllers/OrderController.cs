@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MrWay.Data.Infrastructure.Context;
+using MrWay.Domain.DataTransferObjects.Order;
 using MrWay.Domain.DomainModels.Order;
 using System;
 using System.Collections.Generic;
@@ -62,11 +63,13 @@ namespace MrWay.Web.Areas.Evotor.Controllers
             return dto;
         }
 
-        [HttpPost("Pack/{orderId:guid}")]
-        public void Accept(Guid orderId)
+        [HttpPost("Pack")]
+        public TakeAwayDto Accept([FromBody] TakeAwayDto dto)
         {
-            var order = context.Orders.Single(x => x.Id == orderId);
+            var order = context.Orders.Single(x => x.Id == dto.Id);
             order.OrderStatus = OrderStatus.Packed;
+
+            return dto;
         }
     }
 }
